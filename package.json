@@ -1,0 +1,24 @@
+{
+  "name": "url-shortener",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viharika-Chinthapalli/url-shortener.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/viharika-Chinthapalli/url-shortener/issues"
+  },
+  "homepage": "https://github.com/viharika-Chinthapalli/url-shortener#readme",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "mongoose": "^7.1.1"
+  }
+}
