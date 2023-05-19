@@ -18,6 +18,8 @@ const endpoints = [
   { path: '/r', description: 'Information about redirection endpoint', response: 'Message about how to use /r/google and /r/github' },
   { path: '/map', description: 'Save URL to alias mapping', response: 'Save a mapping between a URL and an alias' },
   { path: '/mappings', description: 'Display alias-to-URL mappings', response: 'List of alias-to-URL mappings' },
+  { path: '/r/ALIAS', description: 'Redirect to URL for specified ALIAS', response: 'Redirect to previously defined URL' },
+
 ];
 
 app.get('/', (req, res) => {
@@ -42,7 +44,8 @@ app.get('/r', (req, res) => {
 });
 
 app.get('/r/google', (req, res) => {
-  res.redirect('https://www.google.com');
+  res.writeHead(302, { Location: 'https://www.google.com' });
+  res.end();
 })
 
 app.get('/r/github', (req, res) => {
@@ -60,6 +63,16 @@ app.post('/map', (req, res) => {
 
 app.get('/mappings', (req, res) => {
   res.json(mappings);
+});
+
+app.get('/r/:alias', (req, res) => {
+  const { alias } = req.params;
+  const url = mappings[alias];
+  if (url) {
+    res.redirect(url);
+  } else {
+    res.status(404).send('Mapping not found.');
+  }
 });
 
 app.listen(process.env.PORT || 5000, () => {
